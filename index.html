@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" style="position: fixed" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>RSP平台-太屋</title>
+    <link href="JS/element2.3.7/element.css" rel="stylesheet" />
+    <!-- <link href="/CSS/plus.style.css" rel="stylesheet" /> -->
+    <link href="CSS/iconfont.css" rel="stylesheet" />
+    <style>
+        #pageLogin{
+            margin: 0 auto;
+            width: 1000px;
+        }
+        [v-cloak] {
+            display: none;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div id="pageLogin" v-cloak>
+        <home-title :titledata="tabsArrData" @sendtabdata="getChildrenData"></home-title>
+        {{childrenCurrentSelectionData.name}}
+    </div>
+    <script src="JS/vue2.5/vue.js"></script>
+    <!--<script src="~/JS/Vue/vue2.5/vue.min.js"></script>
+    <script src="~/JS/Vue/vuex2.5/vuex.min.js"></script>-->
+    <script src="JS/element2.3.7/element.min.js"></script>
+    <script src="JS/jquery-2.2.4.min.js"></script>
+    <script src="./JS/component/homeTitle.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            pageIndex = new PageLogin();
+            pageIndex.init();
+
+        });
+
+        function PageLogin() {
+            let _this = this;
+            _this.init = function () {
+               
+            };
+            _this.vm = new Vue({
+                el: "#pageLogin",
+                data() {
+                    return {
+                        tabsArrData: [ //tab页数据
+                            {
+                                id: 0,
+                                label: '用户管理',
+                                name: 'first',
+                            },
+                            {
+                                id: 1,
+                                label: '配置管理',
+                                name: 'second',
+                            },
+                            {
+                                id: 2,
+                                label: '角色管理',
+                                name: 'third',
+                            },
+                            {
+                                id: 3,
+                                label: '定时任务补偿',
+                                name: 'fourth',
+                            },
+                        ],
+                        childrenCurrentSelectionData: '',  //tab页选中数据
+                    }
+                },
+                computed: {},
+                methods: {
+                    //获取子
+                    getChildrenData (value){
+                        value?this.childrenCurrentSelectionData = value:this.childrenCurrentSelectionData = '';
+                    },
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
